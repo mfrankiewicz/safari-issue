@@ -1,3 +1,6 @@
 Header Set Access-Control-Allow-Origin "https://safari-issue.frankiewicz.me"
 Header Set Access-Control-Allow-Credentials "true"
 Header Set Access-Control-Expose-Headers "date"
+Header Set x-frame-options "SAMEORIGIN"
+Header Set x-xss-protection "1; mode=block"
+Header Set strict-transport-security "max-age=63072000; includeSubdomains;"
