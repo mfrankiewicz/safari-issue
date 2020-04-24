@@ -5,11 +5,14 @@ require_once __DIR__ . '/constants.php';
 setcookie(
     $name = 'test_cookie',
     $value = 'test',
-    $expire = time() + 3600,
-    $path = '/',
-    COOKIE_DOMAIN,
-    COOKIE_SECURE,
-    $httpOnly = true
+    [
+        'expires' => time() + 36000,
+        'path' => '/',
+        'domain' => COOKIE_DOMAIN,
+        'secure' => COOKIE_SECURE,
+        'httponly' => true,
+        'samesite' => 'Strict',
+    ]
 );
 
 if (isset($_GET['redirect'])) {
