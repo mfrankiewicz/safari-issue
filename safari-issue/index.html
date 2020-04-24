@@ -21,17 +21,46 @@
 
     <script src="/js/axios.min.js" type="text/javascript"></script>
     <script type="text/javascript">
-        const api = axios.create({
-            withCredentials: true
+        /*
+         * axios configuration
+         */
+        const axiosService = axios.create({
+            withCredentials: true,
+            headers: { 'Content-type': 'application/json;charset=UTF-8' },
         })
 
+        const handleNonExistentHeader = (response) => {
+            if (response.headers['non_existent_header'] === undefined) {
+                console.log('doing nothing')
+            }
+        }
+
+        axiosService.interceptors.response.use(
+            (response) => { handleNonExistentHeader(response); return response; },
+            (error) => { handleNonExistentHeader(error.response); return Promise.reject(error); }
+        )
+
+        const handleExistent = (response) => {
+            if (response.headers['connection'] !== undefined) {
+                console.log(`"connection" header value ${response.headers['connection']}`)
+            }
+        }
+
+        axiosService.interceptors.response.use(
+            (response) => { handleExistent(response); return response; },
+            (error) => { handleExistent(error.response); return Promise.reject(error); }
+        )
+
+        /*
+         * button handlers
+         */
         const button1 = document.getElementById('create-cookie-xhr')
         const button2 = document.getElementById('create-cookie-redirect')
         const button3 = document.getElementById('check-cookie')
         const button4 = document.getElementById('delete-cookie')
 
         button1.addEventListener('click', () => {
-            api.get('https://example-service.frankiewicz.me/create_cookie.php').then(() => {
+            axiosService.get('https://example-service.frankiewicz.me/create_cookie.php').then(() => {
                 alert('request sent')
             })
         })
@@ -41,7 +70,7 @@
         })
 
         button3.addEventListener('click', () => {
-            api.get('https://example-service.frankiewicz.me/check_cookie.php').then(() => {
+            axiosService.get('https://example-service.frankiewicz.me/check_cookie.php').then(() => {
                 alert('success')
             }).catch(() => {
                 alert('failure')
@@ -49,7 +78,7 @@
         })
 
         button4.addEventListener('click', () => {
-            api.get('https://example-service.frankiewicz.me/delete_cookie.php').then(() => {
+            axiosService.get('https://example-service.frankiewicz.me/delete_cookie.php').then(() => {
                 alert('request sent')
             })
         })
