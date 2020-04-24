@@ -8,7 +8,7 @@ setcookie(
     $expire = time() - 36000,
     $path = '/',
     COOKIE_DOMAIN,
-    $secure = $_['SERVER_PORT'] == 443,
+    COOKIE_SECURE,
     $httpOnly = true
 );
 unset($_COOKIE['test_cookie']);
