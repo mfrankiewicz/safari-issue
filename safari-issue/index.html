@@ -31,17 +31,17 @@
         const button4 = document.getElementById('delete-cookie')
 
         button1.addEventListener('click', () => {
-            api.get('http://example-service.example.local/create_cookie.php').then(() => {
+            api.get('https://example-service.frankiewicz.me/create_cookie.php').then(() => {
                 alert('request sent')
             })
         })
 
         button2.addEventListener('click', () => {
-            window.location = 'http://example-service.example.local/create_cookie.php?redirect=http://safari-issue.example.local'
+            window.location = 'https://example-service.frankiewicz.me/create_cookie.php?redirect=https://safari-issue.frankiewicz.me'
         })
 
         button3.addEventListener('click', () => {
-            api.get('http://example-service.example.local/check_cookie.php').then(() => {
+            api.get('https://example-service.frankiewicz.me/check_cookie.php').then(() => {
                 alert('success')
             }).catch(() => {
                 alert('failure')
@@ -49,7 +49,7 @@
         })
 
         button4.addEventListener('click', () => {
-            api.get('http://example-service.example.local/delete_cookie.php').then(() => {
+            api.get('https://example-service.frankiewicz.me/delete_cookie.php').then(() => {
                 alert('request sent')
             })
         })

@@ -1,3 +1,3 @@
 <?php
 
-define('COOKIE_DOMAIN', '.example.local');
+define('COOKIE_DOMAIN', '.frankiewicz.me');
