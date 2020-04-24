@@ -1,0 +1,14 @@
+version: '3'
+services:
+    web:
+        container_name: web
+        network_mode: host
+        build:
+            context: ./.docker
+        ports:
+            - 80:80
+        volumes:
+            - .:/var/www/
+        working_dir: /var/www
+        environment:
+            APACHE_DOCUMENT_ROOT: /public
