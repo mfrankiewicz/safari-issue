@@ -55,6 +55,7 @@
          * button handlers
          */
         const button1 = document.getElementById('create-cookie-xhr')
+        const button5 = document.getElementById('create-cookie-xhr-redirect')
         const button2 = document.getElementById('create-cookie-redirect')
         const button3 = document.getElementById('check-cookie')
         const button4 = document.getElementById('delete-cookie')
@@ -79,6 +80,12 @@
 
         button4.addEventListener('click', () => {
             axiosService.get('https://example-service.frankiewicz.me/delete_cookie.php').then(() => {
+                alert('request sent')
+            })
+        })
+
+        button5.addEventListener('click', () => {
+            axiosService.get('https://example-service.frankiewicz.me/pre_create_cookie.php').then(() => {
                 alert('request sent')
             })
         })
