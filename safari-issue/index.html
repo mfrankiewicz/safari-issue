@@ -1,1 +1,58 @@
-safari-issue
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Safari issue test</title>
+</head>
+<body>
+    <div>
+        <button id="create-cookie-xhr">create cookie xhr</button>
+    </div>
+    <div>
+        <button id="create-cookie-redirect">create cookie redirect</button>
+    </div>
+    <div>
+        <button id="check-cookie">check cookie</button>
+    </div>
+    <div>
+        <button id="delete-cookie">delete cookie</button>
+    </div>
+
+    <script src="/js/axios.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        const api = axios.create({
+            withCredentials: true
+        })
+
+        const button1 = document.getElementById('create-cookie-xhr')
+        const button2 = document.getElementById('create-cookie-redirect')
+        const button3 = document.getElementById('check-cookie')
+        const button4 = document.getElementById('delete-cookie')
+
+        button1.addEventListener('click', () => {
+            api.get('http://example-service.example.local/create_cookie.php').then(() => {
+                alert('request sent')
+            })
+        })
+
+        button2.addEventListener('click', () => {
+            window.location = 'http://example-service.example.local/create_cookie.php?redirect=http://safari-issue.example.local'
+        })
+
+        button3.addEventListener('click', () => {
+            api.get('http://example-service.example.local/check_cookie.php').then(() => {
+                alert('success')
+            }).catch(() => {
+                alert('failure')
+            })
+        })
+
+        button4.addEventListener('click', () => {
+            api.get('http://example-service.example.local/delete_cookie.php').then(() => {
+                alert('request sent')
+            })
+        })
+    </script>
+</body>
+</html>
